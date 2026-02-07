@@ -1,0 +1,34 @@
+.upload-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.file-input {
+  margin: 20px 0;
+}
+
+.options {
+  margin: 15px 0;
+}
+
+button {
+  padding: 10px 20px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:disabled {
+  background: #cccccc;
+}
+
+.message {
+  margin-top: 15px;
+  padding: 10px;
+}
+
+.error {
+  color: #d9534f;
+}

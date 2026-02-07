@@ -1,0 +1,30 @@
+Process / Phase / Operations ,Moynes ,Nbre  ,Cout Unitaire (euro),Cout Moyns Prod (euro),Couts Interface de test (euro),Couts Banc de test(euro) ,Cout Instrument de test(euro) 
+MAIN BOARD: Ass CMS-2 et integ,Gabarit de press capots blindage Main,0,700,0,0,0,0
+MAIN BOARD: Ass CMS-2 et integ,Gabarits d'assemblage interboard,0,800,0,0,0,0
+RF BOARD: Ass CMS-2 et integ,Montage 2xPads + capots blindages,0,700,0,0,0,0
+RF BOARD: Ass CMS-2 et integ,Gabarit Press Capots blindages,0,700,0,0,0,0
+RF BOARD: Ass CMS-2 et integ,Gabarit d'ASS CIE + dissipateur central,0,1000,0,0,0,0
+RF BOARD: Ass CMS-2 et integ,Gabarit de Mariage ensemble  CIE Mère + fille + vissage disspiteur CPU,0,1000,0,0,0,0
+RF BOARD: Ass CMS-2 et integ,Gabarit de vissage support antenne (2xvis),0,1000,0,0,0,0
+RF BOARD: Ass CMS-2 et integ,Gabarit de plug antennes coax,0,1500,0,0,0,0
+RF BOARD: Ass CMS-2 et integ,Plateaux thermformé moule proto,0,700,0,0,0,0
+RF BOARD: Ass CMS-2 et integ,Plateaux thermformé moule série ,0,3500,0,0,0,0
+RF BOARD: Ass CMS-2 et integ,Plateaux thermo pour démarrage Présérie,0,7,0,0,0,0
+RF BOARD: Ass CMS-2 et integ,Gabarit Ass SFIN + Bottom Cover + vissage (1xvis),0,1000,0,0,0,0
+RF BOARD: Ass CMS-2 et integ,Montage Frame + Vissage (2xvis),0,900,0,0,0,0
+RF BOARD: Ass CMS-2 et integ,Montage Mid Frame + Vissage (2xvis),0,900,0,0,0,0
+RF BOARD: Ass CMS-2 et integ,Gabarit de montage + serrage 4xPatins,0,800,0,0,0,0
+Test Synchro,Interfaces  de test ,0,350,0,0,0,0
+Test Synchro,Banc de Test ,0,0,0,0,0,0
+Test Synchro,CMTS + Licences Docis,0,0,0,0,0,0
+Test Synchro,Alim cmts + formation,0,0,0,0,0,0
+Test Synchro,Carte reseau,0,0,0,0,0,0
+Test Synchro,PC,0,0,0,0,0,0
+NFT + Bouton/Led/Vis et Patin,SWITCH  RF + Attenuateur + Câble RF,0,0,0,0,0,0
+NFT + Bouton/Led/Vis et Patin,Powermetre ,0,0,0,0,0,0
+NFT + Bouton/Led/Vis et Patin,Interfaces VISION,2,400,0,800,0,0
+NFT + Bouton/Led/Vis et Patin,extantion Banc de Test ,0,0,0,0,0,0
+NFT + Bouton/Led/Vis et Patin,Interfaces de test ,4,4000,0,16000,0,0
+NFT + Bouton/Led/Vis et Patin,PC de test,0,0,0,0,0,0
+NFT + Bouton/Led/Vis et Patin,Carte reseaux,0,0,0,0,0,0
+NFT + Bouton/Led/Vis et Patin,Carte NI+ ACC +HARTING …,0,0,0,0,0,0

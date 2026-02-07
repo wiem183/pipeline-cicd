@@ -1,0 +1,148 @@
+<div class="planning-container">
+
+ <!-- En-tête -->
+  <div class="header">
+    <h2 class="dashboard-title">Planning de validation des tests</h2>
+  </div>
+  </div>
+
+  <!-- MENU NAVIGATION -->
+  <div class="menu-container">
+    <div class="menu-grid">
+      <a routerLink="/quoi-tester" class="menu-card card-blue">
+        <i class="bi bi-tools"></i> <span>Quoi Tester</span>
+      </a>
+      <a routerLink="/dashboard-quoi-tester" class="menu-card card-grey">
+        <i class="bi bi-cpu"></i> <span>Status Soft</span>
+      </a>
+      <a routerLink="/planning" class="menu-card card-green">
+        <i class="bi bi-gear-wide-connected"></i> <span>Status Mécanique</span>
+      </a>
+      <a routerLink="/dashboard-suivi-budget" class="menu-card card-red">
+        <i class="bi bi-clipboard-data"></i> <span>Suivi Budget</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- FILTRES -->
+  <div class="sagem-filter-container">
+    <div class="sagem-filter-group">
+      <label for="projet-select" class="sagem-filter-label">
+        <i class="bi bi-folder2-open me-1"></i> Projet
+      </label>
+      <select id="projet-select" [(ngModel)]="selectedProjet" (change)="onProjetChange()" class="sagem-filter-select">
+        <option value="">➕ Sélectionner un projet</option>
+        <option *ngFor="let projet of projets" [value]="projet">{{ projet }}</option>
+      </select>
+    </div>
+
+    <div class="sagem-filter-group">
+      <label for="run-select" class="sagem-filter-label">
+        <i class="bi bi-play-circle me-1"></i> Run
+      </label>
+      <select id="run-select" [(ngModel)]="selectedRun" class="sagem-filter-select">
+        <option value="">➕ Sélectionner un run</option>
+        <option *ngFor="let i of [].constructor(20); let idx = index" [value]="idx + 1">Run {{ idx + 1 }}</option>
+      </select>
+    </div>
+    <div class="sagem-filter-group">
+      <label for="famille-select" class="sagem-filter-label">
+        <i class="bi bi-play-circle me-1"></i> Famille
+      </label>
+      <select id="famille-select" [(ngModel)]="selectedFamille" (change)="onFamilleChange()" class="sagem-filter-select">
+        <option value="">➕ Sélectionner une famille</option>
+        <option *ngFor="let famille of familles" [value]="famille">{{ famille }}</option>
+      </select>
+    </div>
+
+    <div class="sagem-filter-group">
+            <label for="versionInput" class="sagem-filter-label">
+        <i class="bi bi-code-slash me-1"></i> Version ICP:
+      </label>
+      <input type="text" id="versionInput" class="sagem-filter-select" placeholder="Entrez la version"
+        [(ngModel)]="versionText" />
+    </div>
+  </div>
+
+  <!-- Échelle des dates -->
+  <div class="timeline-container">
+    <div class="timeline">
+      <div *ngFor="let i of totalDaysArray()" class="timeline-day">
+        <div class="day-number">{{ addDays(startDate, i) | date: 'd' }}</div>
+        <div class="day-month">{{ addDays(startDate, i) | date: 'MMM' }}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Diagramme de Gantt -->
+  <div class="gantt-chart">
+    <div *ngFor="let famille of objectKeys(groupedData)" class="famille-block">
+
+      <!-- Titre de la famille -->
+      <div class="famille-title">
+        {{ famille }}
+        <span class="famille-deadline" *ngIf="familleDeadlines[famille]">
+          - Deadline: {{ familleDeadlines[famille] | date: 'dd MMM y' }}
+        </span>
+      </div>
+
+      <!-- Ligne de deadline -->
+      <div
+        class="deadline-line"
+        *ngIf="familleDeadlines[famille]"
+        [ngStyle]="{ left: calculateOffset(familleDeadlines[famille]) + 120 + 'px' }"
+      ></div>
+
+      <!-- Fonctions à tester -->
+      <div *ngFor="let item of groupedData[famille]" class="fonction-row">
+        <div class="fonction-label">{{ item.fonction }}</div>
+
+        <div
+          class="gantt-bar"
+          [ngStyle]="{
+            left: item.debutOffset * 16 + 120 + 'px',
+            width: item.duree * 16 + 'px',
+            backgroundColor: getColor(item.famille)
+          }"
+          (mouseenter)="showTooltip($event, item)"
+          (mouseleave)="hideTooltip()"
+          [class.active]="tooltipVisible && currentTooltip?.fonction === item.fonction"
+        >
+          {{ item.duree }}j
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tooltip -->
+  <div
+    class="custom-tooltip"
+    *ngIf="tooltipVisible"
+    [style.left]="tooltipPosition.x + 'px'"
+    [style.top]="tooltipPosition.y + 'px'"
+    [class.visible]="tooltipVisible"
+  >
+    <div class="tooltip-header">
+      <div class="tooltip-title">{{ currentTooltip?.fonction }}</div>
+      <div class="tooltip-projet">{{ currentTooltip?.projet }}</div>
+    </div>
+    <div class="tooltip-content">
+      <div class="tooltip-row">
+        <span class="tooltip-label">Début:</span>
+        <span class="tooltip-value">{{ currentTooltip?.debut | date: 'EEE d MMM y' }}</span>
+      </div>
+      <div class="tooltip-row">
+        <span class="tooltip-label">Fin:</span>
+        <span class="tooltip-value">{{ currentTooltip?.fin | date: 'EEE d MMM y' }}</span>
+      </div>
+      <div class="tooltip-row">
+        <span class="tooltip-label">Durée:</span>
+        <span class="tooltip-value">{{ currentTooltip?.duree }} jours</span>
+      </div>
+    </div>
+  </div>
+      <div class="export-buttons mb-4" style="margin-top: 15px;">
+    <button class="sagem-btn btn-dark" (click)="downloadPDF()">
+      <i class="bi bi-file-earmark-pdf"></i> Exporter en PDF
+    </button>
+  </div>

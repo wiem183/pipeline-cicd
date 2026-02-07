@@ -1,0 +1,13 @@
+CREATE DATABASE IF NOT EXISTS sagem;
+USE sagem;
+
+CREATE TABLE IF NOT EXISTS app_user (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(255) NOT NULL UNIQUE,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  role ENUM('ADMIN','EMPLOYE') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT IGNORE INTO app_user (username, email, password, role)
+VALUES ('admin', 'admin@sagemcom.com', '$2a$10$N9qo8uLOickgx2ZMRZoMy.MH/rJkH3p5CfJwW7ACV6nO7O2Q1GqKu', 'ADMIN');

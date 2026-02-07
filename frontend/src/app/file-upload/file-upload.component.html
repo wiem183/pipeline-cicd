@@ -1,0 +1,105 @@
+<div class="max-w-xl mx-auto mt-10 p-6 bg-white rounded-xl shadow-lg font-sans border border-[#005baa]">
+
+  <!-- Titre avec logo -->
+  <div class="flex items-center justify-center mb-8">
+    <h2 class="text-2xl font-bold text-[#003e7e]">Ajouter ou mettre à jour des données projet</h2>
+  </div>
+
+  <!-- Carte d'upload -->
+  <div class="bg-[#e6f2fb] p-6 rounded-lg border border-[#99c1f3] mb-6">
+
+    <!-- Sélection du Fichier -->
+    <div class="mb-5">
+      <label class="block mb-2 text-sm font-medium text-[#005baa]">
+        <i class="bi bi-file-earmark-excel text-[#005baa] mr-1"></i>
+        Sélectionnez un fichier à stocker
+      </label>
+      <div class="flex items-center">
+        <label class="flex-1 cursor-pointer">
+          <input type="file" (change)="onFileSelected($event)" class="hidden" accept=".xlsx,.csv" />
+          <div class="p-3 border-2 border-dashed border-[#99c1f3] rounded-lg hover:bg-[#cde4ff] transition">
+            <p class="text-center text-[#003e7e]" *ngIf="!selectedFile">
+              <i class="bi bi-cloud-arrow-up text-2xl text-[#005baa] block mb-1"></i>
+              Cliquez ici pour choisir un fichier
+            </p>
+            <p class="text-sm text-[#003e7e]" *ngIf="selectedFile">
+              <i class="bi bi-file-earmark-excel text-[#005baa] mr-2"></i>
+              {{ selectedFile.name }}
+              <span class="block text-xs text-[#004080] mt-1">
+                {{ (selectedFile.size / 1024).toFixed(1) }} KB - 
+                <span class="font-semibold text-[#005baa]">Prêt à être stocké</span>
+              </span>
+            </p>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- Type de Données -->
+    <div class="mb-5">
+      <label class="block mb-2 text-sm font-medium text-[#005baa]">
+        <i class="bi bi-tags text-[#005baa] mr-1"></i>
+        Catégorie des données
+      </label>
+      <select [(ngModel)]="etlType"
+              class="w-full p-2 border border-[#99c1f3] rounded-md focus:ring-2 focus:ring-[#005baa] focus:border-[#005baa] text-sm bg-white">
+        <option value="" disabled selected>Sélectionnez...</option>
+        <option value="Budget">Données budgétaires et Données de tests</option>
+        <option value="Planning">Planning projet</option>
+      </select>
+    </div>
+
+    <!-- Consigne sur le nom du fichier -->
+    <div class="mb-5 bg-[#f0f6fb] p-3 rounded-lg border border-[#99c1f3] text-xs text-[#004080]">
+      <strong>⚠️ Important :</strong> Le nom du fichier doit suivre ce format :
+      <ul class="mt-2 space-y-1">
+        <li class="flex items-start">
+          <i class="bi bi-info-circle text-blue-500 mr-2 mt-0.5"></i>
+          <span><strong>[NomProjet]_Planning.xlsx</strong></span>
+        </li>
+        <li class="flex items-start">
+          <i class="bi bi-check-circle text-green-500 mr-2 mt-0.5"></i>
+          Exemple : <span class="font-semibold">SmartBox_Planning.xlsx</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Bouton Envoi -->
+    <button (click)="uploadAndStore()" [disabled]="!selectedFile || !etlType"
+      class="w-full bg-gradient-to-r from-green-600 to-green-500 text-white py-2 rounded-md font-semibold hover:from-green-700 hover:to-green-600 transition flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed">
+      <i class="bi bi-cloud-upload-fill mr-2"></i>
+      Stocker les données
+    </button>
+  </div>
+
+  <!-- Feedback utilisateur -->
+  <div *ngIf="message" class="p-3 mb-5 rounded-md text-sm font-medium text-center"
+       [ngClass]="isSuccess ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'">
+    <i class="bi" [ngClass]="isSuccess ? 'bi-check-circle' : 'bi-exclamation-circle'"></i>
+    {{ message }}
+  </div>
+
+  <!-- Guide utilisateur -->
+  <div class="bg-[#f0f6fb] p-4 rounded-lg border border-[#99c1f3]">
+    <h3 class="text-sm font-semibold text-[#005baa] mb-2 flex items-center">
+      <i class="bi bi-info-circle text-[#003e7e] mr-2"></i>
+      Conseils pour l'importation
+    </h3>
+    <ul class="text-xs text-[#004080] space-y-1">
+      <li class="flex items-start">
+        <i class="bi bi-check-circle text-green-500 mr-2 mt-0.5"></i>
+        Utilisez nos modèles pour garantir une bonne organisation des données
+      </li>
+      <li class="flex items-start">
+        <i class="bi bi-check-circle text-green-500 mr-2 mt-0.5"></i>
+        Assurez-vous que le fichier contient toutes les informations nécessaires
+      </li>
+      <li class="flex items-start">
+        <i class="bi bi-check-circle text-green-500 mr-2 mt-0.5"></i>
+        Vous pouvez ajouter un nouveau projet ou mettre à jour un projet existant
+      </li>
+    </ul>
+
+  </div>
+
+</div>

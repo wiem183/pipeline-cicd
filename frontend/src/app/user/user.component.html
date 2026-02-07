@@ -1,0 +1,156 @@
+<div class="flex h-screen">
+  <!-- SIDEBAR -->
+  <aside class="w-96 bg-[#4f759b] text-white p-6 space-y-8">
+    <!-- Logo -->
+    <div class="text-3xl font-extrabold mb-8 tracking-wide text-center">DealDynamo</div>
+
+    <!-- Section: Visualisation -->
+    <div>
+      <div class="text-sm uppercase text-blue-100 mb-4 font-medium tracking-wider"> Dashboard</div>
+      <ul class="space-y-3">
+        <li>
+          <button 
+            (click)="showPowerBIView()"
+            class="flex items-center gap-4 w-full text-left px-5 py-3 rounded-lg bg-gradient-to-r from-[#6d8fa3] to-[#4f759b] hover:from-[#4f759b] hover:to-[#6d8fa3] text-white font-semibold shadow-lg transition-all duration-300 transform hover:scale-105"
+          >
+            <i class="bi bi-graph-up-arrow text-xl"></i>
+            <span>Retail Consumer Dashboard</span>
+          </button>
+        </li>
+        <li>
+          <button 
+          (click)="showPowerBIView01()"
+            class="flex items-center gap-4 w-full text-left px-5 py-3 rounded-lg bg-gradient-to-r from-[#6d8fa3] to-[#4f759b] hover:from-[#4f759b] hover:to-[#6d8fa3] text-white font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
+            <i class="bi bi-speedometer2 text-xl"></i>
+            <span>Tourism Consumer Dashboard</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Section: Model Catalog -->
+    <div>
+      <div class="text-sm uppercase text-blue-100 mt-8 mb-4 font-medium tracking-wider">Prediction </div>
+      <ul class="space-y-3">
+        <li>
+          <button 
+            (click)="showPredictionView()"
+            class="flex items-center gap-4 w-full text-left px-5 py-3 rounded-lg bg-gradient-to-r from-[#6d8fa3] to-[#4f759b] hover:from-[#4f759b] hover:to-[#6d8fa3] text-white font-semibold shadow-lg transition-all duration-300 transform hover:scale-105"
+          >
+            <i class="bi bi-graph-up-arrow text-xl"></i>
+            <span>Predict Discounts</span>
+          </button>
+        </li>
+        <li>
+          <button 
+            (click)="showPredictionView1()"
+            class="flex items-center gap-4 w-full text-left px-5 py-3 rounded-lg bg-gradient-to-r from-[#6d8fa3] to-[#4f759b] hover:from-[#4f759b] hover:to-[#6d8fa3] text-white font-semibold shadow-lg transition-all duration-300 transform hover:scale-105"
+          >
+            <i class="bi bi-graph-up-arrow text-xl"></i>
+            <span>Predict The Nearest Stores</span>
+          </button>
+        </li>
+        <li>
+          <button 
+            (click)="showPredictionView2()"
+            class="flex items-center gap-4 w-full text-left px-5 py-3 rounded-lg bg-gradient-to-r from-[#6d8fa3] to-[#4f759b] hover:from-[#4f759b] hover:to-[#6d8fa3] text-white font-semibold shadow-lg transition-all duration-300 transform hover:scale-105"
+          >
+            <i class="bi bi-graph-up-arrow text-xl"></i>
+            <span>Recommend The Best Products </span>
+          </button>
+        </li>
+        <li>
+          <button 
+            (click)="showPredictionView3()"
+            class="flex items-center gap-4 w-full text-left px-5 py-3 rounded-lg bg-gradient-to-r from-[#6d8fa3] to-[#4f759b] hover:from-[#4f759b] hover:to-[#6d8fa3] text-white font-semibold shadow-lg transition-all duration-300 transform hover:scale-105"
+          >
+            <i class="bi bi-graph-up-arrow text-xl"></i>
+            <span>Predict Airline Ticket Prices </span>
+          </button>
+        </li>
+        <li>
+          <button
+          (click)="showPredictionView4()"
+            class="flex items-center gap-4 w-full text-left px-5 py-3 rounded-lg bg-gradient-to-r from-[#6d8fa3] to-[#4f759b] hover:from-[#4f759b] hover:to-[#6d8fa3] text-white font-semibold shadow-lg transition-all duration-300 transform hover:scale-105"
+          >
+            <i class="bi bi-graph-up-arrow text-xl"></i>
+            <span>Segment Hotels</span>
+          </button>
+        </li>
+
+
+
+      </ul>
+    </div>
+  </aside>
+  <!-- MAIN CONTENT -->
+  <main class="flex-1 p-6">
+    <div class="mt-20 h-[900px]">
+     <iframe
+      *ngIf="showPowerBI"
+      width="100%"
+      height="100%"
+      [src]="powerBIUrl"
+      frameborder="0"
+      allowfullscreen
+      class="w-full h-full"
+     ></iframe>
+    
+
+     <iframe
+     *ngIf="showPowerBI01"
+     width="100%"
+     height="100%"
+     [src]="powerBIUrl01"
+     frameborder="0"
+     allowfullscreen
+     class="w-full h-full"
+     ></iframe>
+     <iframe
+      *ngIf="showPrediction"
+      width="100%"
+      height="100%"
+      [src]="predictionUrl"
+      frameborder="0"
+      allowfullscreen
+      class="w-full h-full"
+     ></iframe>
+     <iframe
+      *ngIf="showPrediction1"
+      width="100%"
+      height="100%"
+      [src]="predictionUrl1"
+      frameborder="0"
+      allowfullscreen
+      class="w-full h-full"
+      ></iframe>
+      <iframe
+      *ngIf="showPrediction2"
+      width="100%"
+      height="100%"
+      [src]="predictionUrl2"
+      frameborder="0"
+      allowfullscreen
+      class="w-full h-full">
+      </iframe>
+      <iframe
+      *ngIf="showPrediction3"
+      width="100%"
+      height="100%"
+      [src]="predictionUrl3"
+      frameborder="0"
+      allowfullscreen
+      class="w-full h-full"
+      ></iframe>
+     <iframe
+     *ngIf="showPrediction4"
+     width="100%"
+     height="100%"
+     [src]="predictionUrl4"
+     frameborder="0"
+     allowfullscreen
+     class="w-full h-full"
+     ></iframe>
+    </div>
+  </main>
+</div>

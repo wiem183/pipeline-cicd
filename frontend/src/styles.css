@@ -1,0 +1,77 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.active-link {
+    background-color: #991b1b;
+    color: white;
+    font-weight: 600;
+    border-left: 4px solid #facc15;
+  }
+  
+  a:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #facc15;
+  }
+  
+
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInSlow {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+.animate-fadeIn {
+  animation: fadeIn 1s ease-out forwards;
+}
+.animate-fadeInSlow {
+  animation: fadeInSlow 1.5s ease-out forwards;
+}
+
+/* INPUT FIELDS MODERNISÉS */
+.input-field {
+  @apply border border-gray-300 bg-white/80 focus:border-red-500 focus:ring-2 focus:ring-red-200 p-4 rounded-xl shadow-sm transition-all w-full backdrop-blur-sm;
+}
+
+/* NAVBAR GLASSMORPHISM */
+nav {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* BOUTON HOVER SMOOTH */
+button {
+  transition: all 0.3s ease-in-out;
+}
+button:hover {
+  transform: scale(1.05);
+}
+
+/* PARALLAX BACKGROUND */
+.bg-cover {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+/* IMAGE HOVER ZOOM */
+img:hover {
+  transform: scale(1.03);
+  transition: transform 0.5s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* TITRES ANIMÉS */
+h1, h2, h3 {
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+

@@ -1,0 +1,122 @@
+<div class="container">
+
+  <h1 class="title">Rapport des Status Soft</h1>
+
+  <!-- MENU NAVIGATION -->
+  <div class="menu-container">
+    <div class="menu-grid">
+      <a routerLink="/quoi-tester" class="menu-card card-blue">
+        <i class="bi bi-tools"></i> <span>Quoi Tester</span>
+      </a>
+      <a routerLink="/dashboard-quoi-tester" class="menu-card card-grey">
+        <i class="bi bi-cpu"></i> <span>Status Soft</span>
+      </a>
+      <a routerLink="/planning" class="menu-card card-green">
+        <i class="bi bi-gear-wide-connected"></i> <span>Status Mécanique</span>
+      </a>
+
+      <a routerLink="/dashboard-suivi-budget" class="menu-card card-red">
+        <i class="bi bi-clipboard-data"></i> <span>Suivi Budget</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- FILTRES -->
+  <div class="sagem-filter-container">
+    <div class="sagem-filter-group">
+      <label for="projet-select" class="sagem-filter-label">
+        <i class="bi bi-folder2-open me-1"></i> Projet
+      </label>
+      <select id="projet-select" [(ngModel)]="selectedProjet" (change)="onProjetChange()" class="sagem-filter-select">
+        <option value="">➕ Sélectionner un projet</option>
+        <option *ngFor="let projet of projets" [value]="projet">{{ projet }}</option>
+      </select>
+    </div>
+
+    <div class="sagem-filter-group">
+      <label for="run-select" class="sagem-filter-label">
+        <i class="bi bi-play-circle me-1"></i> Run
+      </label>
+      <select id="run-select" [(ngModel)]="selectedRun" class="sagem-filter-select">
+        <option value="">➕ Sélectionner un run</option>
+        <option *ngFor="let i of [].constructor(20); let idx = index">Run {{ idx + 1 }}</option>
+      </select>
+    </div>
+
+    <div class="sagem-filter-group">
+      <label for="versionInput" class="sagem-filter-label">
+        <i class="bi bi-code-slash me-1"></i> Version ICP:
+      </label>
+      <input type="text" id="versionInput" class="sagem-filter-select" placeholder="Entrez la version"
+        [(ngModel)]="versionText" />
+    </div>
+  </div>
+
+
+
+  <!-- SECTION KPI + GRAPHIQUES -->
+   <div class="dashboard-section-flex">
+
+    <!-- COLONNE GAUCHE - KPIs -->
+  <div class="kpi-column">
+    <!-- KPI Supported -->
+    <div class="sagem-kpi-box">
+      <div class="sagem-kpi-icon">✅</div>
+      <div class="sagem-kpi-content">
+        <div class="sagem-kpi-number">{{ totalSupported }}</div>
+        <div class="sagem-kpi-label">Supported</div>
+      </div>
+    </div>
+
+    <!-- KPI Temporarily Not Supported -->
+    <div class="sagem-kpi-box">
+      <div class="sagem-kpi-icon">⏳</div>
+      <div class="sagem-kpi-content">
+        <div class="sagem-kpi-number">{{ totalTemporarilyNotSupported }}</div>
+        <div class="sagem-kpi-label">Temporarily Not Supported</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLONNE DROITE - DONUT CHART -->
+  <div class="donut-chart-expanded">
+    <h3>Répartition des Fonctions</h3>
+    <canvas id="donutChart"></canvas>
+  </div>
+
+
+
+  </div>
+
+  <!-- TABLEAU DES TESTS -->
+  <table class="table-enhanced">
+    <thead>
+      <tr>
+        <th><i class="bi bi-diagram-3"></i> Famille Technique</th>
+        <th><i class="bi bi-puzzle"></i> Fonctions à Tester</th>
+        <th><i class="bi bi-shield-check"></i> Statut</th>
+        <th><i class="bi bi-chat-dots"></i> Commentaire</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let test of filteredTests">
+        <td class="data-famille">{{ test.familleTechnique }}</td>
+        <td class="data-fonction">{{ test.fonctionsATester }}</td>
+        <td [ngClass]="{
+          'status-ok': getEtatFinal(test) === 'Supported',
+          'status-na': getEtatFinal(test) === 'Temporarily Not Supported'
+        }">{{ getEtatFinal(test) }}</td>
+        <td [class.empty-comment]="!test.commentaire">{{ test.commentaire || 'RAS' }}</td>
+      </tr>
+      <tr *ngIf="filteredTests.length === 0" class="no-data-row">
+        <td colspan="4" class="no-data"><i class="bi bi-exclamation-circle"></i> Aucun test trouvé pour ce filtre.</td>
+      </tr>
+    </tbody>
+  </table>
+    <div class="export-buttons mb-4" style="margin-top: 15px;">
+    <button class="sagem-btn btn-dark" (click)="downloadPDF()">
+      <i class="bi bi-file-earmark-pdf"></i> Exporter en PDF
+    </button>
+  </div>
+
+</div>

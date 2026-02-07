@@ -1,0 +1,238 @@
+<!-- En Angular, retire DOCTYPE, html, head, body. Utilise le style Sagemcom, structure Angular. -->
+
+<style>
+  :root {
+    --primary-blue: #005baa;
+    --secondary-blue: #008df2;
+    --accent-teal: #00c1cf;
+    --light-teal: #e6f7f9;
+    --dark-blue: #002c5f;
+    --light-gray: #f8fafc;
+    --border-gray: #e2e8f0;
+    --menu-black: #222;
+  }
+
+  .dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #dceff2 50%, #c5e6eb 100%);
+  }
+
+  .sidebar {
+    width: 280px;
+    background: #fff;
+    border-right: 1px solid var(--border-gray);
+    box-shadow: 4px 0 15px rgba(0, 43, 95, 0.05);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+  }
+
+  .sidebar-header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-gray);
+  }
+
+  .sidebar-logo {
+    color: var(--accent-teal);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .sidebar-logo i {
+    font-size: 1.8rem;
+  }
+
+  .sagem-btn, .sidebar-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.9rem 1.25rem;
+    border-radius: 8px;
+    background: #f5f5f5;
+    color: var(--menu-black);
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    border: none;
+    transition: background 0.2s, color 0.2s;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .sagem-btn i, .sidebar-btn i {
+    font-size: 1.2rem;
+    color: var(--menu-black);
+    transition: color 0.2s;
+    font-weight: bold;
+  }
+
+  .sagem-btn:hover, .sidebar-btn:hover,
+  .sagem-btn.active, .sidebar-btn.active {
+    background: #eaeaea;
+    color: var(--menu-black);
+    transform: none;
+    box-shadow: none;
+  }
+
+  .sagem-btn:hover i, .sidebar-btn:hover i,
+  .sagem-btn.active i, .sidebar-btn.active i {
+    color: var(--menu-black);
+  }
+
+  .main-content {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dashboard-frame-container {
+    height: 85vh;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 43, 95, 0.1);
+    border: 1px solid var(--border-gray);
+    background: #fff;
+    position: relative;
+  }
+
+  .dashboard-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.7s cubic-bezier(0.4, 2, 0.3, 1) forwards;
+  }
+
+  .sidebar-footer {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-gray);
+    font-size: 0.95rem;
+    color: #7b8794;
+    text-align: left;
+  }
+  .sidebar-footer .text-xs {
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+    color: #b0b8c1;
+  }
+</style>
+
+<div class="dashboard-container">
+  <!-- Sidebar amélioré -->
+  <aside class="sidebar">
+    <div>
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <i class="bi bi-graph-up"></i>
+          <span>Dashboard Test ICP</span>
+        </div>
+      </div>
+      <!-- Menu -->
+      <nav>
+        <a routerLink="/purchasing-manager" class="sagem-btn">
+          <i class="bi bi-tools text-xl"></i> Quoi Tester
+        </a>
+        <a routerLink="/finance-manager" class="sagem-btn">
+          <i class="bi bi-cpu text-xl"></i> Status Soft
+        </a>
+        <a routerLink="/general-manager" class="sagem-btn">
+          <i class="bi bi-gear-wide-connected text-xl"></i> Status Mécanique
+        </a>
+        <a routerLink="/sales-manager" class="sagem-btn">
+          <i class="bi bi-clipboard-data text-xl"></i> Suivi Budget
+        </a>
+        <button class="sidebar-btn" (click)="openPowerBI()">
+          <i class="bi bi-box-arrow-up-right"></i>
+          <span>Ouvrir Power BI</span>
+        </button>
+      </nav>
+    </div>
+    <!-- Footer sidebar -->
+    <div class="sidebar-footer">
+      <p>© 2025 Sagemcom</p>
+      <p class="text-xs">v2.1.0</p>
+    </div>
+  </aside>
+
+  <!-- Contenu principal -->
+  <main class="main-content">
+    <div class="dashboard-frame-container animate-fadeIn">
+      <iframe 
+        class="dashboard-frame" 
+        [src]="powerBIUrl"
+        frameborder="0"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </main>
+</div>
+
+<div class="dashboard-container">
+  <!-- Sidebar amélioré -->
+  <aside class="sidebar">
+    <div>
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <i class="bi bi-graph-up"></i>
+          <span>Dashboard Test ICP</span>
+        </div>
+      </div>
+      <!-- Menu -->
+      <nav>
+        <a routerLink="/purchasing-manager" class="sagem-btn">
+          <i class="bi bi-tools text-xl"></i> Quoi Tester
+        </a>
+        <a routerLink="/finance-manager" class="sagem-btn">
+          <i class="bi bi-cpu text-xl"></i> Status Soft
+        </a>
+        <a routerLink="/general-manager" class="sagem-btn">
+          <i class="bi bi-gear-wide-connected text-xl"></i> Status Mécanique
+        </a>
+        <a routerLink="/sales-manager" class="sagem-btn">
+          <i class="bi bi-clipboard-data text-xl"></i> Suivi Budget
+        </a>
+        <button class="sidebar-btn" (click)="openPowerBI()">
+          <i class="bi bi-box-arrow-up-right"></i>
+          <span>Ouvrir Power BI</span>
+        </button>
+      </nav>
+    </div>
+    <!-- Footer sidebar -->
+    <div class="sidebar-footer">
+      <p>© 2025 Sagemcom</p>
+      <p class="text-xs">v2.1.0</p>
+    </div>
+  </aside>
+
+  <!-- Contenu principal -->
+  <main class="main-content">
+    <div class="dashboard-frame-container animate-fadeIn">
+      <iframe 
+        class="dashboard-frame" 
+        [src]="powerBIUrl"
+        frameborder="0"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </main>
+</div>

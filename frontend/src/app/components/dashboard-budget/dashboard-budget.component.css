@@ -1,0 +1,282 @@
+/* Variables CSS pour une cohérence globale */
+:root {
+  --primary-color: #4361ee;
+  --secondary-color: #3f37c9;
+  --accent-color: #4895ef;
+  --dark-color: #2b2d42;
+  --light-color: #f8f9fa;
+  --success-color: #4cc9f0;
+  --warning-color: #f8961e;
+  --danger-color: #f72585;
+  --border-radius: 12px;
+  --box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Conteneur principal */
+.dashboard-container {
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  background-color: var(--light-color);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  max-width: 1400px;
+  margin: 2rem auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+}
+
+/* En-tête */
+.header {
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.dashboard-title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--dark-color);
+  margin-bottom: 1.5rem;
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.dashboard-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color), transparent);
+  border-radius: 3px;
+}
+
+/* Menu de navigation */
+.menu-container {
+  margin-bottom: 2.5rem;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Boutons */
+.sagem-btn {
+  background-color: var(--primary-color);
+  color: rgb(20, 14, 14);
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transition);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.sagem-btn:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.sagem-btn i {
+  font-size: 1.1rem;
+}
+
+/* Cartes budget */
+.budget-cards {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.card {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 1.5rem;
+  width: 280px;
+  text-align: center;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+}
+
+.card.cms::before {
+  background-color: var(--accent-color);
+}
+
+.card.integ::before {
+  background-color: var(--warning-color);
+}
+
+.card.total::before {
+  background: linear-gradient(90deg, var(--accent-color), var(--warning-color));
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+
+.card h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--dark-color);
+  margin: 0;
+}
+
+/* Sélecteur de projet */
+.project-select {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.project-select label {
+  font-weight: 600;
+  margin-right: 0.75rem;
+  color: var(--dark-color);
+  font-size: 0.95rem;
+}
+
+.project-select select {
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  border: 1px solid #dee2e6;
+  background-color: white;
+  font-size: 0.95rem;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.project-select select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+}
+
+/* Conteneur des graphiques */
+.charts-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+canvas {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 2rem;
+  width: 100% !important;
+  max-width: 600px;
+  height: 400px !important;
+  transition: var(--transition);
+}
+
+canvas:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 1.5rem;
+  }
+  
+  .dashboard-title {
+    font-size: 1.5rem;
+  }
+  
+  .menu-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .card {
+    width: 100%;
+  }
+  
+  .charts-container {
+    gap: 1.5rem;
+  }
+}
+.card h3 {
+  font-size: 2rem;                      
+  font-weight: 700;                    /* Gras pour l'impact */
+  color: #1a1a1a;                      /* Noir doux = lisible sur fond blanc */
+  margin: 0;
+  letter-spacing: -0.5px;              /* Plus net pour les chiffres */
+  font-family: 'Segoe UI', 'Inter', sans-serif;
+  text-shadow: 0.5px 0.5px 0.5px rgba(0,0,0,0.05); /* Effet de netteté subtil */
+}
+
+.card p {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #6c757d;
+  margin-bottom: 0.5rem;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+/* Animation subtile */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dashboard-container > * {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Délais d'animation pour chaque élément */
+.header { animation-delay: 0.1s; }
+.menu-container { animation-delay: 0.2s; }
+.budget-cards { animation-delay: 0.3s; }
+.project-select { animation-delay: 0.4s; }
+.charts-container { animation-delay: 0.5s; }

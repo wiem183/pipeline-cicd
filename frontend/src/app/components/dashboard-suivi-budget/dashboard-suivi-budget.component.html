@@ -1,0 +1,291 @@
+<!-- Icônes Bootstrap -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+<div class="dashboard-container">
+
+  <!-- Header -->
+  <div class="header">
+    <h2 class="dashboard-title">Suivi Budgétaire - Coûts CMS & Intégration</h2>
+  </div>
+
+  <!-- FILTRES -->
+  <div class="sagem-filter-container">
+    <div class="sagem-filter-group">
+      <label for="projet-select" class="sagem-filter-label">
+        <i class="bi bi-folder2-open me-1"></i> Projet
+      </label>
+      <select id="projet-select" [(ngModel)]="selectedProject" class="sagem-filter-select">
+        <option value="">➕ Tous les projets</option>
+        <option *ngFor="let projet of projects" [value]="projet">{{ projet }}</option>
+      </select>
+    </div>
+
+    <div class="sagem-filter-group">
+      <label for="run-select" class="sagem-filter-label">
+        <i class="bi bi-play-circle me-1"></i> Run
+      </label>
+      <select id="run-select" [(ngModel)]="selectedRun" class="sagem-filter-select">
+        <option value="">➕ Sélectionner un run</option>
+        <option *ngFor="let i of [].constructor(20); let idx = index" [value]="idx + 1">Run {{ idx + 1 }}</option>
+      </select>
+    </div>
+
+    <div class="sagem-filter-group">
+      <label for="versionInput" class="sagem-filter-label">
+        <i class="bi bi-code-slash me-1"></i> Version
+      </label>
+      <input type="text" id="versionInput" placeholder="Entrez la version" class="sagem-filter-select"
+             [(ngModel)]="versionText" />
+    </div>
+  </div>
+
+<div id="kpi-cards" class="budget-cards">
+
+<!-- NIVEAU 1 : Global -->
+ <div id="kpi-export">
+<div class="card total"
+     [ngClass]="showReel ? (totalGlobalReel > totalGlobalPrevus ? 'surcout' : 'gain') : ''">
+  <p><i class="bi bi-caret-down-fill"></i> Global Prévu</p>
+  <h3>€ {{ totalGlobalPrevus | number: '1.0-0' }}</h3>
+  <div *ngIf="showReel" class="reel-info">
+    <p>Dépense : {{ totalGlobalReel | number: '1.0-0' }} €</p>
+    <p>Écart : {{ tauxDepassementGlobal | number: '1.1-1' }} %</p>
+    <p>
+      <strong>{{ totalGlobalReel > totalGlobalPrevus ? 'Surcoût' : 'Gain' }}</strong>
+    </p>
+  </div>
+</div>
+
+<!-- Flèches verticales -->
+<div class="arrow-down">
+  <i class="bi bi-arrow-down-circle-fill"></i>
+</div>
+<div class="arrow-down small">
+  <i class="bi bi-arrow-down-short"></i>
+</div>
+
+<!-- NIVEAU 2 : CMS + INTEG -->
+<div class="sub-cards">
+  <div class="card cms sub-card"
+       [ngClass]="showReel ? (totalCMSReel > totalCMSPrevus ? 'surcout' : 'gain') : ''">
+    <p><i class="bi bi-arrow-right-short"></i> CMS </p>
+    <h3>€ {{ totalCMSPrevus | number: '1.0-0' }}</h3>
+    <div *ngIf="showReel" class="reel-info">
+      <p>Dépense : {{ totalCMSReel | number: '1.0-0' }} €</p>
+      <p><strong>{{ totalCMSReel > totalCMSPrevus ? 'Dépassement' : 'Gain' }}</strong></p>
+    </div>
+  </div>
+
+  <div class="arrow-right">
+    <i class="bi bi-arrow-right-circle-fill"></i>
+  </div>
+
+  <div class="card integ sub-card"
+       [ngClass]="showReel ? (totalINTEGReel > totalINTEGPrevus ? 'surcout' : 'gain') : ''">
+    <p><i class="bi bi-arrow-right-short"></i> INTEG</p>
+    <h3>€ {{ totalINTEGPrevus | number: '1.0-0' }}</h3>
+    <div *ngIf="showReel" class="reel-info">
+      <p>Dépense : {{ totalINTEGReel | number: '1.0-0' }} €</p>
+      <p><strong>{{ totalINTEGReel > totalINTEGPrevus ? 'Dépassement' : 'Gain' }}</strong></p>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+  <!-- BOUTON FLOTTANT SUIVI BUDGET -->
+  <div class="budget-toggle-floating">
+    <button class="btn-budget-toggle" (click)="showReel = !showReel">
+      <i class="bi bi-currency-euro me-1"></i>
+      {{ showReel ? 'Masquer Dépense' : 'Suivi du budget' }}
+    </button>
+  </div>
+
+  <!-- TABLEAUX -->
+  <div class="etat-tables" *ngIf="showReel">
+    <h4 class="table-title">Détails par phase CMS</h4>
+    <table class="sagem-table">
+      <thead>
+        <tr>
+          <th>Phase</th>
+          <th>Prévu (€)</th>
+          <th>Dépense (€)</th>
+          <th>Écart (€)</th>
+          <th>État</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of etatCMS">
+          <td>{{ item.phase }}</td>
+          <td>{{ item.prevu | number: '1.0-0' }}</td>
+          <td>{{ item.reel | number: '1.0-0' }}</td>
+          <td>{{ item.ecart | number: '1.0-0' }}</td>
+          <td [ngClass]="{'text-danger': item.etat === 'Surcoût', 'text-success': item.etat === 'Gain'}">
+            {{ item.etat }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4 class="table-title">Détails par phase INTEG</h4>
+    <table class="sagem-table">
+      <thead>
+        <tr>
+          <th>Phase</th>
+          <th>Prévu (€)</th>
+          <th>Dépense(€)</th>
+          <th>Écart (€)</th>
+          <th>État</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of etatINTEG">
+          <td>{{ item.phase }}</td>
+          <td>{{ item.prevu | number: '1.0-0' }}</td>
+          <td>{{ item.reel | number: '1.0-0' }}</td>
+          <td>{{ item.ecart | number: '1.0-0' }}</td>
+          <td [ngClass]="{'text-danger': item.etat === 'Surcoût', 'text-success': item.etat === 'Gain'}">
+            {{ item.etat }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- EXPORT PDF -->
+  <button class="btn btn-outline-primary mt-3" (click)="downloadPDF()">
+    <i class="bi bi-file-earmark-pdf me-1"></i> Exporter PDF
+  </button>
+
+</div>
+
+<style>
+:root{
+  --primary:#0d6efd;
+  --secondary:#6610f2;
+  --accent:#28a745;
+  --warning:#ffdd57;
+  --light-bg:#f5f5f7;
+  --button-gradient-start:#ff416c;
+  --button-gradient-end:#ff4b2b;
+}
+
+*{box-sizing:border-box;}
+.dashboard-container{ padding:25px; font-family:'Segoe UI',sans-serif; background: var(--light-bg); border-radius:15px; }
+
+/* Header */
+.header .dashboard-title{ margin:0 0 15px; color: #343a40; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
+
+/* Filtres */
+.sagem-filter-container{ display:flex; flex-wrap:wrap; gap:12px; margin-bottom:20px; align-items:flex-end; }
+.sagem-filter-group{ display:flex; flex-direction:column; gap:6px; }
+.sagem-filter-select{ padding:8px 12px; border:1px solid #d0d7de; border-radius:10px; transition:0.3s; }
+.sagem-filter-select:focus{ border-color: var(--primary); outline:none; box-shadow:0 0 10px rgba(13,110,253,0.3); }
+
+/* Cards */
+.budget-cards{ display:flex; flex-direction:column; align-items:center; gap:20px; }
+
+.card{
+  background:#fff;
+  padding:20px 25px;
+  border-radius:15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  text-align:center;
+  min-width:260px;
+  transition: all 0.4s ease;
+}
+.card:hover{
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 18px 35px rgba(0,0,0,0.25);
+}
+
+.global-card{ background: linear-gradient(135deg, var(--primary), var(--secondary)); color:#fff; }
+.cms{ background: linear-gradient(135deg, var(--warning), #ffc107); }
+.integ{ background: linear-gradient(135deg, var(--accent), #218838); color:#fff; }
+
+.sub-cards{
+  display:flex;
+  gap:2rem;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+  position:relative;
+}
+
+/* Flèches */
+.arrow-down{
+  text-align:center;
+  font-size:2rem;
+  color:var(--primary);
+  animation: bounce 1s infinite alternate;
+  margin:5px 0;
+}
+.arrow-down.small{ font-size:1.5rem; color:var(--secondary); }
+.arrow-right{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:2rem;
+  color:var(--accent);
+  animation: bounce-right 1s infinite alternate;
+}
+
+@keyframes bounce{
+  from{transform:translateY(0);}
+  to{transform:translateY(12px);}
+}
+@keyframes bounce-right{
+  from{transform:translateX(0);}
+  to{transform:translateX(12px);}
+}
+
+/* Tables */
+.sagem-table{ width:100%; border-collapse:collapse; margin-top:12px; font-size:14px; }
+.sagem-table th, .sagem-table td{ border:1px solid #e5e7eb; padding:10px; text-align:center; }
+.table-title{ margin:18px 0 8px; font-weight:700; color:#495057; }
+
+/* Réel / état */
+.reel-info p{ margin:3px 0; font-size:.95em; font-weight:500; }
+
+/* Bouton flottant modernisé */
+.budget-toggle-floating {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 999;
+}
+
+.btn-budget-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #0d6efd, #6610f2); /* bleu vers violet professionnel */
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.18); /* ombre douce */
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
+}
+
+.btn-budget-toggle:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.25); /* effet plus profond */
+  background: linear-gradient(135deg, #6610f2, #0d6efd); /* inversion douce du dégradé */
+  color: #fff;
+}
+
+.btn-budget-toggle i {
+  font-size: 1.4rem;
+  transition: transform 0.35s ease;
+}
+
+.btn-budget-toggle:hover i {
+  transform: rotate(15deg); /* petit effet dynamique sur l’icône */
+}
+</style>

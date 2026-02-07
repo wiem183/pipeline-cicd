@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sagemcom - Plateforme de Pilotage des Tests</title>
+
+  <!-- Polices Google -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Icônes Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --sagem-blue: #005baa;
+      --sagem-light-blue: #008df2;
+      --sagem-dark: #003e7e;
+      --sagem-accent: #0d556b;
+      --text-dark: #1a1a1a;
+      --text-medium: #051c44;
+      --text-light: #6f1717;
+      --bg-light: #f7fafc;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text-dark);
+      background-color: var(--bg-light);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.025em;
+    }
+
+    /* Section Hero améliorée */
+    .hero-section {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: 
+        linear-gradient(135deg, 
+          rgba(88, 202, 247, 0.92) 0%, 
+          rgba(9, 188, 188, 0.8) 100%),
+        url('assets/images/home/ma.png') center/cover no-repeat;
+      background-blend-mode: multiply;
+      color: var(--text-light);
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 30%, 
+          rgba(71, 203, 244, 0.25) 0%, 
+          transparent 40%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 91, 170, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 91, 170, 0.1);
+    }
+
+    .btn-primary {
+      background-color: var(--text-light);
+      color: var(--sagem-blue);
+      border-radius: 8px;
+      font-weight: 600;
+      padding: 12px 24px;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .btn-primary:hover {
+      background-color: transparent;
+      color: var(--text-light);
+      border-color: var(--text-light);
+    }
+
+    .btn-outline {
+      border: 2px solid var(--text-light);
+      color: var(--text-light);
+      border-radius: 8px;
+      font-weight: 600;
+      padding: 12px 24px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline:hover {
+      background-color: var(--text-light);
+      color: var(--sagem-blue);
+    }
+
+    .feature-icon {
+      color: var(--sagem-blue);
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .text-gradient {
+      background: linear-gradient(90deg, var(--sagem-blue), var(--sagem-light-blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .animate-bounce {
+      animation: bounce 2s infinite;
+    }
+    
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+      40% {transform: translateY(-20px);}
+      60% {transform: translateY(-10px);}
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Hero Section améliorée -->
+  <section class="hero-section">
+    <div class="hero-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+
+
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+        <span class="block">Plateforme de Pilotage</span>
+        <span class="text-gradient">Sagemcom</span>
+      </h1>
+      
+      <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-10">
+        Solution intégrée pour le suivi des tests fonctionnels, validation logicielle et statuts mécaniques.
+      </p>
+      
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/file-upload" class="btn-primary inline-flex items-center">
+          <i class="fas fa-folder-open mr-2"></i> Gérer vos Projets
+        </a>
+        <a href="/dashboard" class="btn-outline inline-flex items-center">
+          <i class="fas fa-tachometer-alt mr-2"></i> Tableau de bord
+        </a>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <a href="#features" class="text-white animate-bounce inline-block">
+        <i class="fas fa-chevron-down text-2xl"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-sagem-dark">
+          Fonctionnalités Clés
+        </h2>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+          Une solution complète pour le suivi technique de vos projets
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Feature 1 -->
+        <div class="card p-8 text-center">
+          <div class="feature-icon">
+            <i class="fas fa-microchip"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-sagem-dark">Tests Fonctionnels</h3>
+          <p class="text-gray-600">
+            Suivi en temps réel des validations hardware et des protocoles de test.
+          </p>
+        </div>
+        
+        <!-- Feature 2 -->
+        <div class="card p-8 text-center">
+          <div class="feature-icon">
+            <i class="fas fa-code"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-sagem-dark">Validation Logicielle</h3>
+          <p class="text-gray-600">
+            Gestion des versions firmware et analyse des performances logicielles.
+          </p>
+        </div>
+        
+        <!-- Feature 3 -->
+        <div class="card p-8 text-center">
+          <div class="feature-icon">
+            <i class="fas fa-cogs"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-sagem-dark">Statut Mécanique</h3>
+          <p class="text-gray-600">
+            Monitoring des interventions et contrôles qualité mécaniques.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dashboard Preview -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row items-center gap-12">
+        <div class="md:w-1/2">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6 text-sagem-dark">
+            Tableaux de bord <span class="text-gradient">intuitifs</span>
+          </h2>
+          <p class="text-lg text-gray-700 mb-6">
+            Visualisez l'état d'avancement de vos projets grâce à des indicateurs clairs et personnalisables.
+          </p>
+          <ul class="space-y-3 text-gray-700">
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-sagem-blue mt-1 mr-3"></i>
+              <span>Rapports temps réel</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-sagem-blue mt-1 mr-3"></i>
+              <span>Alertes automatiques</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-sagem-blue mt-1 mr-3"></i>
+              <span>Export des données</span>
+            </li>
+          </ul>
+        </div>
+        <div class="md:w-1/2">
+          <img src="assets/images/home/dashboard.png" alt="Dashboard Preview" class="rounded-xl shadow-xl w-full">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-sagem-dark text-white py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-6 md:mb-0">
+          <p class="text-xl font-bold">SAGEMCOM</p>
+          <p class="text-gray-400 mt-2">Innovation & Technologies</p>
+        </div>
+        <div class="flex space-x-6">
+          <a href="#" class="text-gray-400 hover:text-white transition">
+            <i class="fab fa-linkedin-in text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition">
+            <i class="fab fa-twitter text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition">
+            <i class="fab fa-youtube text-xl"></i>
+          </a>
+        </div>
+      </div>
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">
+        © 2025 Sagemcom. Tous droits réservés. | Version 2.1.0
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

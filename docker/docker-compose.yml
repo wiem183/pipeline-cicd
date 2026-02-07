@@ -1,0 +1,77 @@
+
+
+services:
+  backend:
+    container_name: sagem-backend
+    build:
+      context: ../sagem-login
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+
+      # Configuration MySQL pour les utilisateurs
+      - SPRING_DATASOURCE_URL=jdbc:mysql://sagem-mysql:3306/userdb?createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=wiem
+
+      # Configuration MongoDB pour les projets
+      - SPRING_DATA_MONGODB_URI=mongodb://sagem-mongo:27017/projets
+
+    volumes:
+      - ../sagem-login/uploads:/app/uploads
+      - ../sagem-login/scripts:/app/scripts
+
+    networks:
+      - sagem-network
+    depends_on:
+      - sagem-mysql
+      - sagem-mongo
+    restart: unless-stopped
+
+  frontend:
+    container_name: sagem-frontend
+    build:
+      context: ../frontend
+    ports:
+      - "4200:80"
+    networks:
+      - sagem-network
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  sagem-mongo:
+    container_name: sagem-mongo
+    image: mongo:5
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=projets
+    networks:
+      - sagem-network
+    restart: unless-stopped
+
+  sagem-mysql:
+    container_name: sagem-mysql
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=wiem
+      - MYSQL_DATABASE=userdb
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - sagem-network
+    restart: unless-stopped
+
+volumes:
+  mongo_data:
+  mysql_data:
+
+networks:
+  sagem-network:
+    driver: bridge

@@ -1,0 +1,59 @@
+<div class="dashboard-container">
+
+  <!-- En-tête -->
+  <div class="header">
+    <h2 class="dashboard-title">Planification Budgétaire - Analyse des Coûts CMS et Intégration</h2>
+  </div>
+
+  <!-- Menu de navigation -->
+  <div class="menu-container">
+    <div class="menu-buttons">
+      <a routerLink="/quoi-tester" class="sagem-btn">
+        <i class="bi bi-tools"></i> Quoi Tester
+      </a>
+      <a routerLink="/dashboard-quoi-tester" class="sagem-btn">
+        <i class="bi bi-cpu"></i> Status Soft
+      </a>
+      <a routerLink="/planning" class="sagem-btn">
+        <i class="bi bi-gear-wide-connected"></i> Status Mécanique
+      </a>
+      <a routerLink="/dashboard-budget" class="sagem-btn">
+        <i class="bi bi-cash-coin"></i> Budget Planifié
+      </a>
+      <a routerLink="/dashboard-suivi-budget" class="sagem-btn">
+        <i class="bi bi-clipboard-data"></i> Suivi Budget
+      </a>
+    </div>
+  </div>
+
+  <!-- Cartes Budget -->
+  <div class="budget-cards">
+    <div class="card cms">
+      <p>Budget prévus CMS</p>
+      <h3>€ {{ totalCMS | number:'1.0-0' }}</h3>
+    </div>
+    <div class="card integ">
+      <p>Budget Intégration</p>
+      <h3>$ {{ totalINTEG | number:'1.0-0' }}</h3>
+    </div>
+    <div class="card total">
+      <p>Budget Global (Total)</p>
+      <h3>€ {{ totalGlobal | number:'1.0-0' }}</h3>
+    </div>
+  </div>
+
+  <!-- Sélecteur de projet -->
+  <div class="project-select">
+    <label>Choisir un projet :</label>
+    <select [(ngModel)]="selectedProject" (change)="filterData()">
+      <option value="">Tous</option>
+      <option *ngFor="let project of projects" [value]="project">{{ project }}</option>
+    </select>
+  </div>
+
+  <!-- Graphiques -->
+  <div class="charts-container">
+    <canvas id="cmsChart"></canvas>
+    <canvas id="integChart"></canvas>
+  </div>
+</div>

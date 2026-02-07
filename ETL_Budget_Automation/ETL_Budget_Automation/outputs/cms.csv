@@ -1,0 +1,80 @@
+Process / Phase / Operations ,Moynes ,Nbre  ,Cout Unitaire (euro),Cout Moyns Prod (euro),Couts Interface de test (euro),Couts Banc de test(euro) ,Cout Instrument de test(euro) 
+SMT 1,Pochoir ,0,400,0,0,0,0
+SMT 1,Caisson DEK,0,1200,0,0,0,0
+SMT 1,Feeder et Buses,0,1000,0,0,0,0
+Vague ,Cadre vague ,0,800,0,0,0,0
+Vague ,Cadre Mini vague ,0,400,0,0,0,0
+Degrappage ,Casette ,0,3500,0,0,0,0
+Retouche ,JIG retouche ,0,1000,0,0,0,0
+ICT CIE Mere ,Interface de test  Off line ,1,14000,0,14000,0,0
+ICT CIE FILLE,Interface de test Off line ,1,14000,0,14000,0,0
+BP3,Interfaces de test ,0,350,0,0,0,0
+BP3,Banc de Test BP3,0,0,0,0,0,0
+BP3,PC ,0,0,0,0,0,0
+BP3,RAS Pberry ,0,0,0,0,0,0
+BP3,Accesoires ( Switcher IP etc … ) ,0,0,0,0,0,0
+BP3,Support pre-alim,0,0,0,0,0,0
+TF/TT MAIN Board ,Interfaces ,5,2100,0,10500,0,0
+TF/TT MAIN Board ,Banc de test ,0,0,0,0,0,0
+TF/TT MAIN Board ,Generateur de frequence ,0,0,0,0,0,0
+TF/TT MAIN Board ,Licences,0,0,0,0,0,0
+TF/TT MAIN Board ,PW meter ,0,0,0,0,0,0
+TF/TT MAIN Board ,Sonde 50Ohm,0,0,0,0,0,0
+TF/TT MAIN Board ,Sonde 75Ohm,0,0,0,0,0,0
+TF/TT MAIN Board ,Accesoires RF,0,0,0,0,0,0
+TF/TT MAIN Board ,PC ,0,0,0,0,0,0
+TF/TT MAIN Board ,Carte reseaux,0,0,0,0,0,0
+TF/TT MAIN Board ,Support pre-alim,0,0,0,0,0,0
+RX_TX,Interfaces ,0,350,0,0,0,0
+RX_TX,Banc de test ,0,0,0,0,0,0
+RX_TX,Generateur de frequence ,0,0,0,0,0,0
+BER,Interfaces ,0,1300,0,0,0,0
+BER,Banc de test ,0,0,0,0,0,0
+BER,Generateur de frequence ,0,0,0,0,0,0
+TF RF ,Interfaces ,10,1700,0,0,0,0
+TF RF ,Banc de test ,0,0,0,0,0,0
+TF RF ,Generateur de frequence ,0,0,0,0,0,0
+TF RF ,Licences,0,0,0,0,0,0
+TF RF ,PW meter ,0,0,0,0,0,0
+TF RF ,Sonde 50Ohm,0,0,0,0,0,0
+TF RF ,Sonde 75Ohm,0,0,0,0,0,0
+TF RF ,Accesoires RF,0,0,0,0,0,0
+TF RF ,PC ,0,0,0,0,0,0
+TF RF ,Carte reseaux,0,0,0,0,0,0
+TF RF ,Support pre-alim,0,0,0,0,0,0
+WIFI 11-AX,Interface,10,2000,0,20000,0,0
+WIFI 11-AX,Probe RF (sonde),90,68,0,6120,0,0
+WIFI 11-AX,Attéantteur 6dbm,0,47,0,0,0,0
+WIFI 11-AX,Cable RF 30cm,0,12,0,0,0,0
+WIFI 11-AX,Banc de Test ,0,0,0,0,0,0
+WIFI 11-AX,M8W 11 ax  Wifi 6 ,0,0,0,0,0,0
+WIFI 11-AX,PC de test,0,0,0,0,0,0
+WIFI 11-AX,Accesoires ( Switcher IP etc … ) ,0,0,0,0,0,0
+WIFI 11-AX,cartes reseaux,0,0,0,0,0,0
+WIFI 11-AX,POWER spplitter 1-->8,0,230,0,0,0,0
+WIFI 11-AX,POWER spplitter 1--> 4,0,200,0,0,0,0
+WIFI 11-AX,Caisson,0,0,0,0,0,0
+WIFI 11-AX,Filtre,0,0,0,0,0,0
+WIFI 11BE ,Interfaces ( Generique Et Spec),8,2000,0,16000,0,0
+WIFI 11BE ,Probe RF (sonde),90,68,0,6120,0,0
+WIFI 11BE ,Attéantteur 6dbm,0,47,0,0,0,0
+WIFI 11BE ,Cable RF 30cm,0,12,0,0,0,0
+WIFI 11BE ,Banc de Test ,0,0,0,0,0,0
+WIFI 11BE ,M8W,0,0,0,0,0,0
+WIFI 11BE ,PC de test,0,0,0,0,0,0
+WIFI 11BE ,Accesoires ( Switcher IP etc … ) ,0,0,0,0,0,0
+WIFI 11BE ,POWER spplitter 1-->8,0,230,0,0,0,0
+WIFI 11BE ,POWER spplitter 1--> 4,0,200,0,0,0,0
+WIFI 11BE ,cartes reseaux,0,0,0,0,0,0
+WIFI 11BE ,Caisson,0,0,0,0,0,0
+WIFI 11BE ,Filtre,0,0,0,0,0,0
+Thread ( zegbee),Interface de test ,2,2000,0,4000,0,0
+Thread ( zegbee),Probe RF (sonde),4,68,0,272,0,0
+Thread ( zegbee),Attéantteur 6dbm,0,47,0,0,0,0
+Thread ( zegbee),Cable RF 30cm,0,12,0,0,0,0
+Thread ( zegbee),Banc de test ,0,0,0,0,0,0
+Thread ( zegbee),Fbox  + Alim prog,0,0,0,0,0,0
+Thread ( zegbee),PC,0,0,0,0,0,0
+Thread ( zegbee),accesoirs ( adapteur USBserie ),0,0,0,0,0,0
+Thread ( zegbee),Carte Port to port FXS,0,0,0,0,0,0
+Thread ( zegbee),Carte reseaux 10Gbit,0,0,0,0,0,0

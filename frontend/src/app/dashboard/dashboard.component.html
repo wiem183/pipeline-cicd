@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sagemcom - Plateforme Technique</title>
+
+  <!-- Bootstrap Icons + Tailwind + Animate.css -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    :root {
+      --sagem-primary: #005baa;
+      --sagem-secondary: #008df2;
+      --sagem-accent: #47cbf4;
+      --sagem-dark: #003e7e;
+      --sagem-light: #e9eef3;
+      --text-light: #ffffff;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f7fb 100%);
+      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    }
+
+    @supports (font-variation-settings: normal) {
+      body { font-family: 'Inter var', sans-serif; }
+    }
+
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(0, 91, 170, 0.12);
+      box-shadow: 0 8px 32px rgba(0, 91, 170, 0.08);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .glass-panel:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 91, 170, 0.12);
+      border-color: rgba(0, 91, 170, 0.2);
+    }
+
+    .sagem-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.5rem;
+      background-color: white;
+      color: var(--sagem-primary);
+      border-radius: 0.75rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.01em;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 2px 4px rgba(0, 91, 170, 0.1);
+    }
+
+    .sagem-btn:hover {
+      background-color: var(--sagem-primary);
+      color: white;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(0, 91, 170, 0.15);
+    }
+
+    .sagem-btn i {
+      transition: transform 0.3s ease;
+    }
+
+    .sagem-btn:hover i {
+      transform: scale(1.1);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--sagem-dark);
+    }
+
+      p {
+      line-height: 1.6;
+      color: #252535;
+    }
+
+    .text-gradient {
+      background: linear-gradient(90deg, var(--sagem-primary), var(--sagem-secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col text-gray-800">
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-1 py-12 px-4 sm:px-6 lg:px-8">
+
+    <!-- Navigation Buttons -->
+<!-- Navigation Buttons -->
+<div class="menu-container">
+  <div class="menu-buttons">
+    <a routerLink="/quoi-tester" class="sagem-btn">
+      <i class="bi bi-tools text-xl"></i> Quoi Tester
+    </a>
+    <a routerLink="/dashboard-quoi-tester" class="sagem-btn">
+      <i class="bi bi-cpu text-xl"></i> Status Soft
+    </a>
+    <a routerLink="/planning" class="sagem-btn">
+      <i class="bi bi-gear-wide-connected text-xl"></i> Status Mécanique
+    </a>
+    <a routerLink="/dashboard-suivi-budget" class="sagem-btn">
+      <i class="bi bi-clipboard-data text-xl"></i> Suivi Budget
+    </a>
+  </div>
+</div>
+
+
+
+    <!-- Image Gallery -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold mb-8 text-center text-black">Environnement de Test</h2>
+       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="glass-panel rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300">
+          <div class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+                 alt="Labo de test Sagemcom" 
+                 class="w-full h-48 object-cover transition-transform duration-500 hover:scale-105">
+          </div>
+          <div class="p-6">
+            <h3 class="font-bold text-lg mb-2 text-gray-900">Labo Hardware</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Validation mécanique et thermique des équipements.</p>
+          </div>
+        </div>
+        
+        <div class="glass-panel rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300">
+          <div class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+                 alt="Tests logiciels" 
+                 class="w-full h-48 object-cover transition-transform duration-500 hover:scale-105">
+          </div>
+          <div class="p-6">
+            <h3 class="font-bold text-lg mb-2 text-gray-900">Validation Logicielle</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Tests approfondis des firmware et software embarqués.</p>
+          </div>
+        </div>
+        
+        <div class="glass-panel rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300">
+          <div class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+                 alt="Analyse données" 
+                 class="w-full h-48 object-cover transition-transform duration-500 hover:scale-105">
+          </div>
+          <div class="p-6">
+            <h3 class="font-bold text-lg mb-2 text-gray-900">Centre d'Analyse</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Traitement et interprétation des résultats de tests.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-sagem-dark text-white py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-6 md:mb-0">
+          <p class="text-xl font-bold">SAGEMCOM</p>
+          <p class="text-gray-400 mt-2">Innovation & Technologies</p>
+        </div>
+        <div class="flex space-x-6">
+          <a href="#" class="text-gray-400 hover:text-white transition">
+            <i class="fab fa-linkedin-in text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition">
+            <i class="fab fa-twitter text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition">
+            <i class="fab fa-youtube text-xl"></i>
+          </a>
+        </div>
+      </div>
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">
+        © 2025 Sagemcom. Tous droits réservés. | Version 2.1.0
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

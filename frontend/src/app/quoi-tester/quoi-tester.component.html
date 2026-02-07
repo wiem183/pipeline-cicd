@@ -1,0 +1,158 @@
+<div class="container">
+
+  <!-- Titre -->
+  <h1 class="title"> Quoi Tester - Demande de Tests ICP</h1>
+
+  <!-- Menu de navigation -->
+  <div class="menu-container">
+    <div class="menu-grid">
+      <a routerLink="/quoi-tester" class="menu-card card-blue">
+        <i class="bi bi-tools"></i> <span>Quoi Tester</span>
+      </a>
+      <a routerLink="/dashboard-quoi-tester" class="menu-card card-grey">
+        <i class="bi bi-cpu"></i> <span>Status Soft</span>
+      </a>
+      <a routerLink="/planning" class="menu-card card-green">
+        <i class="bi bi-gear-wide-connected"></i> <span>Status Mécanique</span>
+      </a>
+
+      <a routerLink="/dashboard-suivi-budget" class="menu-card card-red">
+        <i class="bi bi-clipboard-data"></i> <span>Suivi Budget</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Filtres -->
+  <div class="sagem-filter-container">
+    <div class="sagem-filter-group">
+      <label for="projet-select" class="sagem-filter-label">
+        <i class="bi bi-folder2-open me-1"></i> Projet
+      </label>
+<select id="projet-select" [(ngModel)]="selectedProjet" (change)="onProjetChange()" class="sagem-filter-select">
+  <option value="">➕ Sélectionner un projet</option>
+  <option *ngFor="let projet of projets" [value]="projet">{{ projet }}</option>
+</select>
+
+    </div>
+
+    <div class="sagem-filter-group">
+      <label for="run-select" class="sagem-filter-label">
+        <i class="bi bi-play-circle me-1"></i> Run
+      </label>
+      <select id="run-select" [(ngModel)]="selectedRun" class="sagem-filter-select">
+        <option value="">➕ Sélectionner un run</option>
+        <option>Run 1</option>
+        <option>Run 2</option>
+        <option>Run 3</option>
+        <option>Run 4</option>
+        <option>Run 5</option>
+        <option>Run 6</option>
+        <option>Run 7</option>
+        <option>Run 8</option>
+        <option>Run 9</option>
+        <option>Run 10</option>
+        <option>Run 11</option>
+        <option>Run 12</option>
+        <option>Run 13</option>
+        <option>Run 14</option>
+        <option>Run 15</option>
+        <option>Run 16</option>
+        <option>Run 17</option>
+        <option>Run 18</option>
+        <option>Run 19</option>
+        <option>Run 20</option>
+      </select>
+    </div>
+      <div class="sagem-filter-group">
+    <label for="versionInput" class="sagem-filter-label">Version ICP:</label>
+    <input 
+      type="text" 
+      id="versionInput" 
+      class="sagem-filter-select" 
+      placeholder="Entrez la version"
+      [(ngModel)]="versionText" 
+      name="version" />
+  </div>
+  </div>
+
+<!-- Section Analyse ICP -->
+<section class="dashboard-section">
+  <p class="page-description">
+    Visualisez le total des fonctions demandées avec ICP ainsi que leur répartition par famille technique.
+  </p>
+
+  <div class="dashboard-section-grid">
+    <!-- KPI Box -->
+    <div class="sagem-kpi-box kpi-blue">
+      <div class="sagem-kpi-icon"><i class="bi bi-clipboard-data"></i></div>
+      <div class="sagem-kpi-content">
+        <div class="sagem-kpi-number">{{ totalICP }}</div>
+        <div class="sagem-kpi-label">Total Demande ICP</div>
+      </div>
+    </div>
+    
+
+    <!-- Donut Chart -->
+    <div class="donut-chart-box">
+      <h3>Répartition par Famille</h3>
+      <canvas id="donutChart"></canvas>
+    </div>
+  </div>
+</section>
+
+<table class="table table-enhanced">
+  <thead>
+    <tr>
+      <th><i class="bi bi-diagram-3"></i> Famille Technique</th>
+      <th><i class="bi bi-puzzle"></i> Fonctions à Tester</th>
+      <th><i class="bi bi-chat-dots"></i> Commentaire</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let test of filteredTests">
+      <td class="data-famille">{{ test.familleTechnique }}</td>
+      <td class="data-fonction">{{ test.fonctionsATester }}</td>
+      <td class="data-comment" [ngClass]="{'empty-comment': !test.commentaire}">{{ test.commentaire || 'RAS' }}</td>
+    </tr>
+    <tr *ngIf="filteredTests.length === 0">
+      <td colspan="3" class="no-data-row">
+        <div class="no-data">
+          <i class="bi bi-exclamation-circle-fill"></i>
+          Aucune donnée disponible (ICP = oui) pour ce filtre.
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+  <!-- Zone PDF (cachée pour export) -->
+  <div class="pdf-export" #pdfContent style="display:none;">
+    <h2>Quoi Tester - Demande de Tests ICP</h2>
+    <p><strong>Projet :</strong> {{ selectedProjet || 'Tous les projets' }}</p>
+    <p><strong>Run :</strong> {{ selectedRun || 'Non spécifié' }}</p>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Famille Technique</th>
+          <th>Fonctions à Tester</th>
+          <th>Commentaire</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let test of filteredTests">
+          <td>{{ test.familleTechnique }}</td>
+          <td>{{ test.fonctionsATester }}</td>
+          <td>{{ test.commentaire || 'RAS' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+    <!-- Bouton d'export PDF -->    
+    <div class="export-buttons">
+      <button class="btn btn-pdf" (click)="downloadPDF()">
+        <i class="bi bi-file-earmark-pdf"></i> Exporter PDF
+      </button>
+</div>

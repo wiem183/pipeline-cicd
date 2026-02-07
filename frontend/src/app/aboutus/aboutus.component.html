@@ -1,0 +1,167 @@
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+<style>
+body {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  background: #f5f6fa;
+  margin: 0;
+  padding: 0;
+}
+
+.about-section {
+  background: linear-gradient(90deg, #ffffff 60%, #ffeaea 100%);
+  padding: 4rem 2rem 2.5rem 2rem;
+  text-align: center;
+  border-radius: 0 0 2.5rem 2.5rem;
+  box-shadow: 0 2px 12px 0 rgba(200,16,46,0.07);
+  margin-bottom: 2.5rem;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.75rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #c8102e, #ff7e5f, #feb47b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 1.2rem;
+  letter-spacing: 2px;
+}
+
+.section-subtitle {
+  font-size: 1.15rem;
+  color: #444;
+  max-width: 750px;
+  margin: 0 auto;
+  line-height: 1.8;
+  font-weight: 500;
+}
+
+.team-section {
+  background: #f5f6fa;
+  padding: 3rem 2rem 4rem 2rem;
+}
+
+.team-grid {
+  display: grid;
+  gap: 2.5rem 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  justify-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.team-member {
+  background: linear-gradient(135deg, #ffffff 70%, #fbeaea 100%);
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 16px rgba(200,16,46,0.07);
+  padding: 2.2rem 1.2rem 1.5rem 1.2rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s;
+  border: 1.5px solid #f3d6db;
+  position: relative;
+}
+
+.team-member:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 8px 32px rgba(200,16,46,0.13);
+  border-color: #c8102e33;
+}
+
+.member-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 12px rgba(200,16,46,0.09);
+  margin-bottom: 1.1rem;
+  border: 3px solid #fff;
+  background: #fff;
+}
+
+.member-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.18rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #c8102e, #ff7e5f, #feb47b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 0.3rem;
+  letter-spacing: 1px;
+  transition: color 0.3s;
+}
+
+.member-role {
+  font-size: 0.98rem;
+  color: #666;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive adjustments */
+@media (min-width: 900px) {
+  .team-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .about-section,
+  .team-section {
+    padding: 2rem 0.5rem;
+  }
+
+  .team-grid {
+    gap: 1.5rem 0.5rem;
+  }
+}
+</style>
+
+<!-- SECTION TEXTE PRINCIPAL -->
+<section class="about-section">
+  <h2 class="section-title">Meet FICO Intelligence</h2>
+  <p class="section-subtitle">
+    At FICO Intelligence, we transform raw data into actionable strategies.<br>
+    By blending smart analytics, human-centered design, and tech innovation, we help businesses make decisions that are confident, informed, and future-ready.
+  </p>
+</section>
+
+<!-- SECTION ÉQUIPE -->
+<section class="team-section">
+  <div class="team-grid">
+    <div class="team-member">
+      <img src="assets/images/aboutus/nour.jpg" alt="Nour Amara" class="member-photo">
+      <h3 class="member-name">Nour Amara</h3>
+      <p class="member-role">Web Developer</p>
+    </div>
+    <div class="team-member">
+      <img src="assets/images/aboutus/wiwi.jpg" alt="Wissal Arfeoui" class="member-photo">
+      <h3 class="member-name">Wissal Arfeoui</h3>
+      <p class="member-role">UX/UI Designer</p>
+    </div>
+    <div class="team-member">
+      <img src="assets/images/aboutus/imenS.jpg" alt="Imen Sammoud" class="member-photo">
+      <h3 class="member-name">Imen Sammoud</h3>
+      <p class="member-role">Project Manager</p>
+    </div>
+    <div class="team-member">
+      <img src="assets/images/aboutus/ines.jpg" alt="Ines Cherif" class="member-photo">
+      <h3 class="member-name">Ines Cherif</h3>
+      <p class="member-role">Digital Marketing</p>
+    </div>
+    <div class="team-member">
+      <img src="assets/images/aboutus/samra.jpg" alt="Samra Naffouti" class="member-photo">
+      <h3 class="member-name">Samra Naffouti</h3>
+      <p class="member-role">Data Analyst</p>
+    </div>
+    <div class="team-member">
+      <img src="assets/images/aboutus/imen.jpg" alt="Imen Ayed" class="member-photo">
+      <h3 class="member-name">Imen Ayed</h3>
+      <p class="member-role">Customer Support</p>
+    </div>
+  </div>
+</section>
